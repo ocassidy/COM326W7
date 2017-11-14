@@ -15,11 +15,11 @@
 //We do that to specify which class the member functions belong to
 //Class_Name::Member_Function
 Student::Student() {
-	std::cout << "The default Student class constructor was called" << std::endl;
+	
 }
 
 Student::Student(std::string name) {
-	std::cout << "The first custom Student class constructor was called" << std::endl;
+	std::cout << "Constructor created on " << this->GetName() << std::endl;
 	name_ = name;
 }
 
@@ -29,7 +29,7 @@ Student::Student(std::string name) {
 Student::Student(std::string name, std::string registration, std::string course, int yearofStudy) : name_{ name }, registrstionID_{ registration }, course_{ course},
 	yearofStudy_{ yearofStudy}
 {
-	std::cout << "The second custom Student class constructor was called" << std::endl;
+	std::cout << "Constructor created on " << this->GetName() << std::endl;
 
 	//we could assign the values of the parameters to the data members like this
 	//name_ = name;
@@ -141,4 +141,11 @@ void Student::UpdateModule(std::string moduleTitle, std::string moduleCode, int 
 int Student::GetNumberModules() {
 	return this->moduleMarks_.size();
 
+}
+
+Student::~Student() {
+	//if () {
+
+	//}
+	std::cout << "Destructor called on " << this->GetName() << std::endl;
 }

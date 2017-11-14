@@ -1,5 +1,5 @@
 #pragma once
-
+#include <iostream>
 #include <string>
 
 class Module
@@ -25,6 +25,8 @@ public:
 	int getModuleCreditPoints() const;
 	void setModuleCreditPoints(int creditPoints);
 
+	//Default Construtor
+	~Module();
 
 };
 

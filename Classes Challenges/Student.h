@@ -68,5 +68,7 @@ public:
 	std::string Student::CalculateClassification() const;
 	//std::string Student::CalculateClassification();
 	
+	//Default Constructor
+	~Student();
 
 };
