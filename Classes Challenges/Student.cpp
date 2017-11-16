@@ -9,18 +9,20 @@
 */
 
 #include "Student.h"
+int Student::enrolled_{ 0 };
 
 //Default constuctor
 //Note how we use the scope resolution operator ::
 //We do that to specify which class the member functions belong to
 //Class_Name::Member_Function
 Student::Student() {
-	
+	enrolled_++;
 }
 
 Student::Student(std::string name) {
-	std::cout << "Constructor created on " << this->GetName() << std::endl;
 	name_ = name;
+	std::cout << "Constructor created on " << this->GetName() << std::endl;
+	enrolled_++;
 }
 
 //This constructor creates and initialises it by copying the data from each variable
@@ -30,11 +32,11 @@ Student::Student(std::string name, std::string registration, std::string course,
 	yearofStudy_{ yearofStudy}
 {
 	std::cout << "Constructor created on " << this->GetName() << std::endl;
+	enrolled_++;
 
 	//we could assign the values of the parameters to the data members like this
 	//name_ = name;
 };
-
 
 //Getters and setters
 void Student::SetName(std::string name) {
@@ -143,9 +145,45 @@ int Student::GetNumberModules() {
 
 }
 
-Student::~Student() {
-	//if () {
-
-	//}
-	std::cout << "Destructor called on " << this->GetName() << std::endl;
+//Static member
+int Student::GetEnrolled(){
+	return enrolled_;
 }
+
+std::ostream & operator<<(std::ostream& output, const Student& student){
+	output << "Name: " << student.name_ << "RegID: " << student.registrstionID_
+		<< "Course: " << student.course_ << "Year: " << student.yearofStudy_ << std::endl;
+
+	return output;
+}
+
+std::istream & operator>>(std::istream& input, Student& student){
+	std::string name, RegID, course;
+	unsigned int year;
+
+	std::cout << "Enter name: " << std::endl;
+	input >> std::setw(20) >> name;
+
+	std::cout << "Enter RegID: " << std::endl;
+	input >> std::setw(10) >> RegID;
+
+	std::cout << "Enter Course: " << std::endl;
+	input >> std::setw(40) >> course;
+
+	std::cout << "Enter Year: " << std::endl;
+	input >> std::setw(1) >> year;
+
+	student.SetName(name);
+	student.SetRegistrationID(RegID);
+	student.SetCourse(course);
+	student.SetYearofStudy(year);
+	
+	return input;
+}
+
+Student::~Student() {
+	std::cout << "Destructor called on " << this->GetName() << std::endl;
+	enrolled_--;
+}
+
+

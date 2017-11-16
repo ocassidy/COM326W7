@@ -13,9 +13,14 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 #include "Module.h"
 
 class Student {
+
+	//Friend function
+	friend std::ostream& operator<<(std::ostream&, const Student&);
+	friend std::istream& operator>>(std::istream&, Student&);
 
 	//Priviate data members - we make them private so we can protect the data
 	//This enforces encapsulation. We control access through the public member functions
@@ -31,6 +36,7 @@ private:
 	//int moduleTwoMark_;
 	//int moduleThreeMark_;
 	float CalculateAverage() const;
+	static int enrolled_;
 
 public:
 	//Public member functions
@@ -70,5 +76,7 @@ public:
 	
 	//Default Constructor
 	~Student();
+
+	static int GetEnrolled();
 
 };

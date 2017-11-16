@@ -1,13 +1,12 @@
 #include "Module.h"
 
-
 Module::Module(){
 	std::cout << "Constructor created " << this->getModuleTitle() << std::endl;
 }
 
 Module::Module(std::string moduleTitle, std::string moduleCode, int moduleCreditPoints, int moduleMark) :
 	moduleTitle_{ moduleTitle }, moduleCode_{ moduleCode }, moduleCreditPoints_{ moduleCreditPoints }, moduleMark_{ moduleMark } {
-	std::cout << "Custome constructor created " << this->getModuleTitle() << std::endl;
+	std::cout << "Custom constructor created " << this->getModuleTitle() << std::endl;
 }
 
 std::string Module::getModuleTitle() const{
